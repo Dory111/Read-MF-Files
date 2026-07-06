@@ -149,7 +149,6 @@ read_mf2000_dis <- function(data_path,
     # was there an overflow on last row read?
     if(length(holdover) > 0){
       item     <- append(holdover, item)
-      print(holdover)
       holdover <- c()
     }
     elev_list[[counter]] <- item
