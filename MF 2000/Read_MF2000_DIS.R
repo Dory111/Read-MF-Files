@@ -181,13 +181,11 @@ read_mf2000_dis <- function(data_path,
         
         lay_sep         <- append(lay_sep, counter)
         layer_processed <- layer_processed + 1
-        print(ncell)
         ncell           <- 0
         
       } else {
         lay_sep         <- append(lay_sep, counter)
         layer_processed <- layer_processed + 1
-        print(ncell)
         ncell           <- 0
       }
       
