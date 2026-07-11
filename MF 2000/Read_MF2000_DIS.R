@@ -132,7 +132,7 @@ read_mf2000_dis <- function(data_path,
     # detect layer control information
     if(length(item) == 3 & is.na(as.numeric(item[2])) == TRUE){
      lay_mult <- as.numeric(strsplit(item[2], '(', fixed = TRUE)[[1]][1])
-     index   <- index + 1
+     index    <- index + 1
      next
     }
     #-------------------------------------------------------------------------------
@@ -204,7 +204,7 @@ read_mf2000_dis <- function(data_path,
     blank      <- matrix(data  = as.vector(unlist(elev_list[c((lay_sep[i]+1):lay_sep[i+1])])),
                          nrow  = nrow,
                          ncol  = ncol,
-                         byrow = TRUE)
+                         byrow = FALSE)
     layer_defs[[i]] <- blank
   }
   names(layer_defs) <- paste0('bot_lay_', c(0:nlay))
@@ -218,9 +218,21 @@ read_mf2000_dis <- function(data_path,
   names(layer_thick) <- paste0('thick_lay_', c(1:nlay))
   #-------------------------------------------------------------------------------
   
+  
   #-------------------------------------------------------------------------------
-  return(list(layer_defs,
-              layer_thick))
+  out_list <- list(layer_defs,
+                   layer_thick,
+                   nrow,
+                   ncol,
+                   nlay,
+                   confining_layers)
+  names(out_list) <- c('layer_defs',
+                       'layer_thick',
+                       'nrow',
+                       'ncol',
+                       'nlay',
+                       'quasi_conf')
+  return(out_list)
   #-------------------------------------------------------------------------------
 }
 #-------------------------------------------------------------------------------
