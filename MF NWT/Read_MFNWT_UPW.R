@@ -121,19 +121,7 @@ read_mfnwt_upw <- function(data_path,
     item    <- strsplit(raw_txt[index], delimeter)[[1]]
     item    <- item[item != '']
     #-------------------------------------------------------------------------------
-    
-    #-------------------------------------------------------------------------------
-    # detect beginning of stress period information by character presence
-    if(length(item) == 4 & is.na(as.numeric(item[4])) == TRUE){
-      cat(paste0('\nStress period beginning at: ', index))
-      cat(paste0('\nIf you believe this to be an error please check the .dis file'))
-      lay_sep <- append(lay_sep, counter)
-      done    <- TRUE
-      next
-    }
-    #-------------------------------------------------------------------------------
-    
-    
+   
     #-------------------------------------------------------------------------------
     # detect layer control information
     if(length(item) == 3 & is.na(as.numeric(item[2])) == TRUE){
@@ -186,7 +174,7 @@ read_mfnwt_upw <- function(data_path,
         
         lay_sep         <- append(lay_sep, counter)
         layer_processed <- layer_processed + 1
-        ncell           <- 0
+        ncell           <- overflow
         
       } else {
         lay_sep         <- append(lay_sep, counter)
