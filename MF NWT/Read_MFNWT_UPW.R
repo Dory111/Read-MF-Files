@@ -81,12 +81,15 @@ read_mfnwt_upw <- function(data_path,
   
   #-------------------------------------------------------------------------------
   # find all the variables that will be in the .upw file
-  var_names <- c(paste0('HK_lay_', 1:nlay))
-  if(length(any_chani) > 0){var_names <- append(var_names, paste0('CHANI_lay_', which(chani != 1)))}
-  var_names <- append(var_names, paste0('VK_lay_', 1:nlay))
-  var_names <- append(var_names, paste0('SS_lay_', 1:nlay))
-  if(length(which(names(laytyps) != '0')) > 0){var_names <- append(var_names, paste0('SY_lay_', which(names(laytyps) != '0')))}
-  if(length(which(quasi_conf != '0')) > 0){var_names <- append(var_names, paste0('VKCB_lay_', which(names(quasi_conf) != '0')))}
+  var_names <- c()
+  for(i in 1:nlay){
+    var_names <- append(var_names, c(paste0('HK_lay_', i)))
+    if(chani[i] != 1){var_names          <- append(var_names, paste0('CHANI_lay_', i))}
+    var_names <- append(var_names, paste0('VK_lay_', i))
+    var_names <- append(var_names, paste0('SS_lay_', i))
+    if(names(laytyps[i]) != 0){var_names <- append(var_names, paste0('SY_lay_', i))}
+    if(quasi_conf[i] != 0){var_names     <- append(var_names, paste0('VKCB_lay_', i))}
+  }
   
   cat('\nPredicted configuration of the upstream weighting file: \n')
   max_nchar <- c(0)
