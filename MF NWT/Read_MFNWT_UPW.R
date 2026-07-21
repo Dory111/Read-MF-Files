@@ -65,7 +65,7 @@ read_mfnwt_upw <- function(data_path,
   # chani
   chani <- strsplit(raw_txt[5], delimeter)[[1]]
   chani <- round(as.numeric(chani[chani != '']), 2)
-  cat('\nOf horizontal anisotropy x-y of\n')
+  cat('\nOf horizontal anisotropy x-y:\n')
   chani_out <- vapply(chani, function(x){
     if(nchar(x) < nchar('chani ')){
       paste0(c(x, rep(' ', nchar('chani '))), collapse = '')
